@@ -128,12 +128,12 @@ def main():
 
        if eth_proto == 56710:
            version, traffic_flow, payload_length, next_header, hop_limit, src, target, data = ipv6_packet(data)
-           next_header = struct.unpack('! B', data[6:7])[0]
            arquivo.write('\n' + TAB_1 + 'IPv6 Packet:')
            arquivo.write(
                '\n' + TAB_2 + 'Version: {}, Traffic Flow: {}, Payload Length: {}'.format(version, traffic_flow,
                                                                                          payload_length))
            arquivo.write('\n' + TAB_2 + 'Hop Limit: {}, Source: {}, Target: {}'.format(hop_limit, src, target))
+           arquivo.write('\n' + TAB_2 + 'NEXT HEADER: {}'.format(next_header))
 
            if next_header == 58:
                icmp_type, code, checksum, data = icmp_packet(data)
